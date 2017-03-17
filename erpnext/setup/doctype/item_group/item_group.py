@@ -28,6 +28,7 @@ class ItemGroup(NestedSet, WebsiteGenerator):
 
 	def on_update(self):
 		NestedSet.on_update(self)
+		WebsiteGenerator.on_update(self)
 		invalidate_cache_for(self)
 		self.validate_name_with_item()
 		self.validate_one_root()
@@ -59,20 +60,18 @@ class ItemGroup(NestedSet, WebsiteGenerator):
 
 	def get_context(self, context):
 		context.show_search=True
-		context.page_length = 6
 		context.search_link = '/product_search'
 
 		start = int(frappe.form_dict.start or 0)
 		if start < 0:
 			start = 0
 		context.update({
-			"items": get_product_list_for_group(product_group = self.name, start=start,
-				limit=context.page_length + 1, search=frappe.form_dict.get("search")),
+			"items": get_product_list_for_group(product_group = self.name, start=start, limit=24, search=frappe.form_dict.get("search")),
 			"parent_groups": get_parent_item_groups(self.name),
 			"title": self.name,
+            "public_categories": get_public_categories(),
 			"products_as_list": cint(frappe.db.get_single_value('Website Settings', 'products_as_list'))
 		})
-
 		if self.slideshow:
 			context.update(get_slideshow(self))
 
@@ -148,3 +147,6 @@ def invalidate_cache_for(doc, item_group=None):
 		d = frappe.get_doc("Item Group", d.name)
 		if d.route:
 			clear_cache(d.route)
+
+def get_public_categories():
+    return frappe.db.sql("""select name, route from `tabItem Group` where show_in_website=1""", as_dict=1)

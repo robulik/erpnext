@@ -259,7 +259,7 @@ class Item(WebsiteGenerator):
 			# also used in set_attribute_context
 			context.variants = frappe.get_all("Item",
 				filters={"variant_of": self.name, "show_variant_in_website": 1},
-				order_by="name asc")
+				order_by="weightage desc")
 
 			variant = frappe.form_dict.variant
 			if not variant and context.variants:
@@ -639,8 +639,9 @@ class Item(WebsiteGenerator):
 		if self.variant_of:
 			template_uom = frappe.db.get_value("Item", self.variant_of, "stock_uom")
 			if template_uom != self.stock_uom:
-				frappe.throw(_("Default Unit of Measure for Variant '{0}' must be same as in Template '{1}'")
-					.format(self.stock_uom, template_uom))
+				#frappe.throw(_("Default Unit of Measure for Variant '{0}' must be same as in Template '{1}'")
+				#	.format(self.stock_uom, template_uom))
+				frappe.msgprint(_("Merna jednotka sablony je ina ako varianty. Len pre info."))
 
 	def validate_attributes(self):
 		if self.has_variants or self.variant_of:
