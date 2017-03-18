@@ -709,7 +709,7 @@ DocType: Purchase Invoice,Cash/Bank Account,Hotovostní / Bankovní účet
 apps/erpnext/erpnext/setup/setup_wizard/install_fixtures.py +48,Casual Leave,Casual Leave
 DocType: Student Category,Category,Kategórie
 DocType: Employee,Cell Number,Číslo buňky
-DocType: Vehicle Service,Change,
+DocType: Vehicle Service,Change,Zmeniť
 DocType: Company,Change Abbreviation,Zmeniť skratku
 DocType: Sales Invoice,Change Amount,Zmeniť množstvo
 DocType: Naming Series,Change the starting / current sequence number of an existing series.,Zmeniť výchozí / aktuální poradové číslo existujícího série.

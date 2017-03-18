@@ -63,7 +63,7 @@ def get_list_context(context=None):
 		'no_breadcrumbs': True
 	}
 
-def get_issue_list(doctype, txt, filters, limit_start, limit_page_length=20):
+def get_issue_list(doctype, txt, filters, limit_start, limit_page_length=20, order_by='modified desc'):
 	from frappe.www.list import get_list
 	user = frappe.session.user
 	ignore_permissions = False
@@ -72,7 +72,7 @@ def get_issue_list(doctype, txt, filters, limit_start, limit_page_length=20):
 		filters.append(("Issue", "raised_by", "=", user))
 		ignore_permissions = True
 
-	return get_list(doctype, txt, filters, limit_start, limit_page_length, ignore_permissions=ignore_permissions)
+	return get_list(doctype, txt, filters, limit_start, limit_page_length, ignore_permissions=ignore_permissions, order_by=order_by)
 
 @frappe.whitelist()
 def set_status(name, status):
