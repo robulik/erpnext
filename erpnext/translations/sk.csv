@@ -3304,9 +3304,9 @@ DocType: Request for Quotation,Request for Quotation,Dopyt
 DocType: Request for Quotation Item,Request for Quotation Item,
 DocType: Request for Quotation Supplier,Request for Quotation Supplier,
 apps/erpnext/erpnext/buying/doctype/request_for_quotation/request_for_quotation.py +154,"Request for Quotation is disabled to access from portal, for more check portal settings.",
-apps/erpnext/erpnext/hooks.py +105,Request for Quotations,
+apps/erpnext/erpnext/hooks.py +105,Request for Quotations,Dopyty
 apps/erpnext/erpnext/config/buying.py +13,Request for purchase.,Žiadosť o kúpu.
-apps/erpnext/erpnext/config/buying.py +18,Request for quotation.,
+apps/erpnext/erpnext/config/buying.py +18,Request for quotation.,Dopyt
 ,Requested,Požadované
 DocType: Material Request,Requested For,Požadovaných pro
 ,Requested Items To Be Ordered,Položky na objednanie
